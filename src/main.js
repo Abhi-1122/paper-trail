@@ -61,7 +61,7 @@ const S = {
   view: null, host: null, state: null, client: null,
   lostHost: false, stale: false, tmp: null, errMsg: '',
   sel: null, pick: null, // selected card id; pick = 'value' | 'action' while choosing a token
-  tutorial: store.get('pt-tutorial') === '1', // personal toggle, off by default
+  tutorial: false, // personal toggle, off on every load
   info: null, sheet: null, overHidden: false, lastV: null,
 };
 
@@ -202,7 +202,7 @@ const errorScreen = () => h('section', { class: 'card center mid' }, h('p', {}, 
 function tutorToggle() {
   return h('button', {
     class: 'btn sm tutor ' + (S.tutorial ? 'on' : ''), 'aria-pressed': String(S.tutorial),
-    onclick: () => { S.tutorial = !S.tutorial; S.info = null; store.set('pt-tutorial', S.tutorial ? '1' : '0'); render(); },
+    onclick: () => { S.tutorial = !S.tutorial; S.info = null; render(); },
   }, S.tutorial ? 'Tutor on' : 'Tutor off');
 }
 const menuBtn = () => h('button', { class: 'btn sm icon', 'aria-label': 'Menu', onclick: () => { S.sheet = 'menu'; render(); } }, '☰');
